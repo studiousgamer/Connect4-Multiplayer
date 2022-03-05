@@ -13,6 +13,20 @@ grid = [
 player = "X"
 running = True
 
+def checkConnect4(list):
+    for row in list:
+        for i in range(len(row) - 1):
+            try:
+                item = row[i]
+                nextItem = row[i + 1]
+                nextnextItem = row[i + 2]
+                nextnextnextItem = row[i + 3]
+                if item == player and nextItem == player and nextnextItem == player and nextnextnextItem == player:
+                    print("You win!")
+                    running = False
+            except:
+                pass
+
 while running:
     column = int(input("Which column?\n> "))
     os.system("cls")
@@ -52,59 +66,10 @@ while running:
         [grid[3][0], grid[2][1], grid[1][2], grid[0][3]],
     ]
 
-
-    for col in columnList:
-        for i in range(len(col) - 1):
-            try:
-                item = col[i]
-                nextItem = col[i + 1]
-                nextnextItem = col[i + 2]
-                nextnextnextItem = col[i + 3]
-                if item == player and nextItem == player and nextnextItem == player and nextnextnextItem == player:
-                    print("You win!")
-                    running = False
-            except:
-                pass
-    
-    for row in grid:
-        for i in range(len(row) - 1):
-            try:
-                item = row[i]
-                nextItem = row[i + 1]
-                nextnextItem = row[i + 2]
-                nextnextnextItem = row[i + 3]
-                if item == player and nextItem == player and nextnextItem == player and nextnextnextItem == player:
-                    print("You win!")
-                    running = False
-            except:
-                pass
-    
-    for row in topLeftTobottomRight:
-        for i in range(len(row) - 1):
-            try:
-                item = row[i]
-                nextItem = row[i + 1]
-                nextnextItem = row[i + 2]
-                nextnextnextItem = row[i + 3]
-                if item == player and nextItem == player and nextnextItem == player and nextnextnextItem == player:
-                    print("You win!")
-                    running = False
-            except:
-                pass
-
-    for row in topRightTobottomLeft:
-        for i in range(len(row) - 1):
-            try:
-                item = row[i]
-                nextItem = row[i + 1]
-                nextnextItem = row[i + 2]
-                nextnextnextItem = row[i + 3]
-                if item == player and nextItem == player and nextnextItem == player and nextnextnextItem == player:
-                    print("You win!")
-                    running = False
-            except:
-                pass
-    
+    checkConnect4(columnList)
+    checkConnect4(grid)
+    checkConnect4(topLeftTobottomRight)
+    checkConnect4(topRightTobottomLeft)
     
     if player == "X":
         player = "O"
