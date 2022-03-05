@@ -11,7 +11,6 @@ grid = [
     [blank, blank, blank, blank, blank, blank, blank]
 ]
 player = "X"
-running = True
 
 def checkConnect4(list):
     for row in list:
@@ -22,13 +21,15 @@ def checkConnect4(list):
                 nextnextItem = row[i + 2]
                 nextnextnextItem = row[i + 3]
                 if item == player and nextItem == player and nextnextItem == player and nextnextnextItem == player:
-                    print("You win!")
-                    running = False
+                    return True
             except:
                 pass
 
-while running:
+while True:
     column = int(input("Which column?\n> "))
+    if column > 7 or column < 0:
+        print("Invalid column")
+        break
     os.system("cls")
     grid.reverse()
     for row in grid:
@@ -66,10 +67,18 @@ while running:
         [grid[3][0], grid[2][1], grid[1][2], grid[0][3]],
     ]
 
-    checkConnect4(columnList)
-    checkConnect4(grid)
-    checkConnect4(topLeftTobottomRight)
-    checkConnect4(topRightTobottomLeft)
+    if checkConnect4(columnList):
+        print(f"{player} wins!")
+        break
+    if checkConnect4(grid):
+        print(f"{player} wins!")
+        break
+    if checkConnect4(topLeftTobottomRight):
+        print(f"{player} wins!")
+        break
+    if checkConnect4(topRightTobottomLeft):
+        print(f"{player} wins!")
+        break
     
     if player == "X":
         player = "O"
