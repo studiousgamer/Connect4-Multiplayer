@@ -36,7 +36,7 @@ while True:
         if row[column - 1] == blank:
             row[column - 1] = player
             break
-    
+
     grid.reverse()
 
     columnList = [
@@ -79,11 +79,7 @@ while True:
     if checkConnect4(topRightTobottomLeft):
         print(f"{player} wins!")
         break
-    
-    if player == "X":
-        player = "O"
-    else:
-        player = "X"
 
+    player = "O" if player == "X" else "X"
     for row in grid:
         print(f"{row[0]} {row[1]} {row[2]} {row[3]} {row[4]} {row[5]} {row[6]}")
